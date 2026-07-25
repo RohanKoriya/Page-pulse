@@ -3,7 +3,7 @@ import { auditWebsite } from "../services/audit.service.js";
 
 export const analyzePage = async (req, res) => {
   try {
-    const { url } = req.body;
+    const url = req.body.url?.trim();
 
     // Check if URL exists
     if (!url) {
