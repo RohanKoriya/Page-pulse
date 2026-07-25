@@ -5,7 +5,14 @@ import auditRoutes from "./routes/audit.route.js";
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://page-pulse-six-rust.vercel.app",
+    ],
+  })
+);
 app.use(express.json());
 
 // Health Check Route
