@@ -325,13 +325,21 @@ The server always returns meaningful error messages instead of crashing.
 
 ## 📸 Screenshots
 
-| Home                        | Report                        |
-| --------------------------- | ----------------------------- |
-| ![](./screenshots/home.png) | ![](./screenshots/report.png) |
+### 🏠 Home Page
 
-### Error Handling
+![Home Page](./screenshots/home.png)
 
-![](./screenshots/error.png)
+---
+
+### 📊 Audit Report
+
+![Audit Report](./screenshots/report.png)
+
+---
+
+### ❌ Error Handling
+
+![Error Handling](./screenshots/error.png)
 
 # 🚀 Future Improvements
 
