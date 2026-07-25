@@ -323,25 +323,15 @@ The server always returns meaningful error messages instead of crashing.
 
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
-## Home Page
+| Home                        | Report                        |
+| --------------------------- | ----------------------------- |
+| ![](./screenshots/home.png) | ![](./screenshots/report.png) |
 
-> _Add screenshot here_
+### Error Handling
 
----
-
-## Audit Report
-
-> _Add screenshot here_
-
----
-
-## Error State
-
-> _Add screenshot here_
-
----
+![](./screenshots/error.png)
 
 # 🚀 Future Improvements
 
