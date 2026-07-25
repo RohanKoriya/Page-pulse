@@ -390,6 +390,9 @@ This project handles those cases gracefully by displaying a user-friendly error 
 - GitHub: https://github.com/RohanKoriya
 - LinkedIn: https://linkedin.com/in/rohankoriya
 
+**Frontend (Live Demo):**
+https://page-pulse-six-rust.vercel.app
+
 ---
 
 # 🙏 Acknowledgements
