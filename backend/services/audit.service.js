@@ -1,5 +1,5 @@
 import axios from "axios";
-import { load } from "cheerio";
+import { parseHtml } from "./parseHtml.js";
 
 export const auditWebsite = async (url) => {
   try {
@@ -24,45 +24,11 @@ export const auditWebsite = async (url) => {
       };
     }
 
-    const $ = load(response.data);
-
-    const title = $("title").text().trim() || "Not Found";
-
-    const metaDescription =
-      $('meta[name="description"]').attr("content") || "Not Found";
-
-    const h1Count = $("h1").length;
-
-    const images = $("img");
-    const imageCount = images.length;
-
-    let missingAltImages = 0;
-
-    images.each((_, image) => {
-      const alt = $(image).attr("alt");
-
-      if (!alt || alt.trim() === "") {
-        missingAltImages++;
-      }
-    });
-
-    const bodyText = $("body").text();
-
-    const wordCount = bodyText
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean).length;
-
-    return {
-      status: response.status,
-      responseTime,
-      title,
-      metaDescription,
-      h1Count,
-      imageCount,
-      missingAltImages,
-      wordCount,
-    };
+    return parseHtml(
+      response.data,
+      response.status,
+      responseTime
+    );
   } catch (error) {
     // Invalid domain 
     if (error.code === "ENOTFOUND") {
@@ -82,9 +48,34 @@ export const auditWebsite = async (url) => {
 
     // Website responded with an error (404, 500, etc.)
     if (error.response) {
+      const status = error.response.status;
+
+      if (status === 403) {
+        throw {
+          statusCode: 403,
+          message:
+            "This website blocks automated requests and cannot be analyzed.",
+        };
+      }
+
+      if (status === 404) {
+        throw {
+          statusCode: 404,
+          message: "The requested webpage was not found.",
+        };
+      }
+
+      if (status >= 500) {
+        throw {
+          statusCode: 500,
+          message:
+            "The website is currently unavailable. Please try again later.",
+        };
+      }
+
       throw {
-        statusCode: error.response.status,
-        message: `The website returned HTTP ${error.response.status}.`,
+        statusCode: status,
+        message: `The website returned HTTP ${status}.`,
       };
     }
 
