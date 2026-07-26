@@ -119,7 +119,7 @@ page-pulse
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/page-pulse.git
+git clone https://github.com/RohanKoriya/page-pulse.git
 
 cd page-pulse
 ```
